@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <header>
+        <form id="note-form">
+            <input type="text" id="note">
+            <button type="submit">Enter</button>
+        </form>
+    </header>
+
+
+    <script>
+        document.getElementById('note-form').addEventListener('submit',(e) => {
+            e.preventDefault()
+
+            const note = document.getElementById('note').value;
+
+            if(!localStorage.getItem('temp')){
+                const obj = []
+                localStorage.setItem('temp',JSON.stringify(obj))
+            }
+
+            const arrayOfNotes = JSON.parse(localStorage.getItem('temp'))
+
+            arrayOfNotes.push(note)
+            localStorage.setItem('temp',JSON.stringify(arrayOfNotes))
+
+            alert(localStorage.getItem('temp'))
+        })
+    </script>
+</body>
+</html>
